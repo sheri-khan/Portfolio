@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sheri Khan — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Portfolio of Sheri Khan — Full-Stack Software Developer, AI Integrator, and Content Creator.">
+
+  <style>
+    :root {
+      --bg-main: #050505;
+      --bg-sec: #121212;
+      --accent-1: #8a2be2; /* Purple */
+      --accent-2: #00e5ff; /* Cyan */
+      --text-main: #f8f9fa;
+      --text-muted: #a0aec0;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Animated Background Blob */
+    .bg-animation {
+      position: fixed;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: 
+        radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 30%);
+      z-index: -1;
+      animation: rotateBlob 30s linear infinite;
+    }
+    @keyframes rotateBlob {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Container */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--glass-border);
+      margin-bottom: 60px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent-2); }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 100px;
+      animation: fadeUp 1s ease-out;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .hero h1 span {
+      display: block;
+      font-size: 2rem;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      margin-top: 8px;
+    }
+    .tagline { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; }
+    .typed { color: var(--accent-2); font-weight: 600; }
+
+    /* Buttons */
+    .btn-group { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--text-main);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      color: #000;
+      border: none;
+      box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+    }
+    .btn.primary:hover { box-shadow: 0 15px 25px rgba(0, 229, 255, 0.3); }
+
+    /* Sections */
+    section { margin-bottom: 100px; scroll-margin-top: 80px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -10px;
+      width: 50%; height: 3px;
+      background: var(--accent-2);
+      border-radius: 2px;
+    }
+
+    /* About Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 40px;
+      border-radius: 16px;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 16px; font-size: 1.1rem; }
+    
+    /* Expanded Tech Stack grid */
+    .tech-stack-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .skill-tag {
+      background: rgba(138, 43, 226, 0.15);
+      border: 1px solid rgba(138, 43, 226, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #e2d1f9;
+      transition: all 0.3s ease;
+    }
+    .skill-tag:hover {
+      background: rgba(0, 229, 255, 0.2);
+      border-color: rgba(0, 229, 255, 0.5);
+      color: #fff;
+    }
+
+    @media(max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; padding: 24px; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+
+    /* Projects Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 229, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .card:hover::before { opacity: 1; }
+    .card h3 { margin: 0 0 12px 0; font-size: 1.3rem; }
+    .card p { color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; margin-bottom: 20px; }
+    
+    .card-footer { display: flex; justify-content: space-between; align-items: center; }
+    .lang-pill {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      color: var(--accent-2);
+    }
+    .icon-link {
+      color: var(--text-main);
+      transition: color 0.3s;
+      display: flex;
+    }
+    .icon-link:hover { color: var(--accent-1); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* Keyframes */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation"></div>
+
+  <div class="container">
+    <nav>
+      <a href="#" class="nav-logo">SK.</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/sheri-khan" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <h1>Sheri Khan <span>Full-Stack Software Developer</span></h1>
+      <div class="tagline">
+        I build robust, scalable applications from end to end. <br>
+        <span class="typed" id="typed"></span>
+      </div>
+      <div class="btn-group">
+        <a href="#projects" class="btn primary">View My Work</a>
+        <button class="btn" id="downloadBtn">Download CV / HTML</button>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Hi, I'm Sheri! I specialize in full-stack web and mobile development, turning complex requirements into seamless, high-performance applications. I work across the entire stack, from crafting beautiful UI to managing databases and deploying cloud infrastructure.</p>
+          <p>When I'm not writing code, I'm creating content for my YouTube channels: <strong>SherixEditz</strong>, where I share dynamic cricket edits, and <strong>The Missing Minute</strong>, dedicated to delivering quick, insightful tutorials.</p>
+        </div>
+        <div class="tech-stack-container">
+          <h3 style="margin-top: 0; margin-bottom: 8px;">My Tech Stack</h3>
+          <div class="skills-list">
+            <span class="skill-tag">JavaScript / React</span>
+            <span class="skill-tag">Node.js / Express</span>
+            <span class="skill-tag">MongoDB / Supabase</span>
+            <span class="skill-tag">Flutter & AI Integration</span>
+            <span class="skill-tag">AWS Cloud</span>
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">CSS / Tailwind</span>
+            <span class="skill-tag">Video Editing / Content</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Selected Projects</h2>
+      <div class="grid" id="projectsGrid">
+        <!-- Cards injected via JS -->
+      </div>
+    </section>
+
+    <footer>
+      <div>&copy; <span id="year"></span> Sheri Khan. All rights reserved.</div>
+      <div class="nav-links">
+        <a href="mailto:your.email@example.com">Contact</a>
+        <a href="https://github.com/sheri-khan" target="_blank">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Project Data
+    const projects = [
+      {
+        name: "Arshad Milk Collection",
+        url: "https://github.com/sheri-khan/Arshad_milk_collection_receipt",
+        description: "A digital receipt generator built for efficient milk purchase and sale management.",
+        language: "HTML"
+      },
+      {
+        name: "Milk App Manager",
+        url: "https://github.com/sheri-khan/milk_app_manger",
+        description: "A dynamic JavaScript-based application for managing daily dairy and milk collection records.",
+        language: "JavaScript"
+      },
+      {
+        name: "Zero-To-Hero Web Dev",
+        url: "https://github.com/sheri-khan/Zero-To-Hero-Web-Development",
+        description: "An educational platform designed to teach foundational and advanced web development concepts.",
+        language: "HTML"
+      },
+      {
+        name: "Free Fire Lover Page",
+        url: "https://github.com/sheri-khan/free-fire-lover-page",
+        description: "A community-focused landing page tailored for Free Fire enthusiasts featuring rich media.",
+        language: "HTML"
+      },
+      {
+        name: "Data Analytics",
+        url: "https://github.com/sheri-khan/Data-Anlytic",
+        description: "A data analytics project focusing on data visualization and basic statistical insights.",
+        language: "HTML"
+      },
+      {
+        name: "Project Sign-Up",
+        url: "https://github.com/sheri-khan/project_sign-up",
+        description: "A responsive and interactive user registration flow with client-side validation.",
+        language: "JavaScript"
+      },
+      {
+        name: "BSCS Sem 2 Material",
+        url: "https://github.com/sheri-khan/Bscs-sem2_pu",
+        description: "Static repository containing assignments, notes, and course materials for BSCS Semester 2.",
+        language: "HTML"
+      },
+      {
+        name: "BSCS Sem 3 Projects",
+        url: "https://github.com/sheri-khan/Bscs-sem3_pu",
+        description: "Coursework, mini-projects, and academic code related to my BSCS Semester 3 curriculum.",
+        language: "HTML"
+      },
+      {
+        name: "Free Fire Gameplay",
+        url: "https://github.com/sheri-khan/free-fire-gameplay",
+        description: "A sleek showcase page for displaying Free Fire gameplay highlights and strategies.",
+        language: "HTML"
+      },
+      {
+        name: "Web Cyber",
+        url: "https://github.com/sheri-khan/Web_cyber",
+        description: "A conceptual web project exploring cybersecurity basics, best practices, and awareness.",
+        language: "HTML"
+      },
+      {
+        name: "Intro to FF Battle",
+        url: "https://github.com/sheri-khan/intro-free-fire-battle",
+        description: "An introductory web page outlining the core mechanics and maps of Free Fire battle royale.",
+        language: "HTML"
+      },
+      {
+        name: "English Semester 2",
+        url: "https://github.com/sheri-khan/English-semester-2",
+        description: "Academic materials and presentations formatted for the university English communication course.",
+        language: "HTML"
+      }
+    ];
+
+    // Render cards
+    const grid = document.getElementById('projectsGrid');
+    projects.forEach((p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.transitionDelay = `${idx * 50}ms`; // Staggered animation
+      card.innerHTML = `
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <div class="card-footer">
+          <span class="lang-pill">${p.language}</span>
+          <a class="icon-link" href="${p.url}" title="View Source" target="_blank" rel="noopener">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Scroll Animation Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach(c => observer.observe(c));
+
+    // Typing Effect
+    const typedEl = document.getElementById('typed');
+    const phrases = ["Full-Stack Web & Mobile", "AI-Integrated Apps", "Cloud & Backend Architectures"];
+    let tIdx = 0, char = 0, adding = true;
+    
+    function tick() {
+      const cur = phrases[tIdx];
+      if(adding) {
+        typedEl.textContent = cur.slice(0, ++char);
+        if(char === cur.length) { adding = false; setTimeout(tick, 1500); return; }
+      } else {
+        typedEl.textContent = cur.slice(0, --char);
+        if(char === 0) { adding = true; tIdx = (tIdx + 1) % phrases.length; }
+      }
+      setTimeout(tick, adding ? 60 : 30);
+    }
+    setTimeout(tick, 500); // Initial delay
+
+    // Footer Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Download functionality
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const text = '<!doctype html>\\n' + document.documentElement.outerHTML;
+      const blob = new Blob([text], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; 
+      a.download = 'Sheri_Khan_Portfolio.html';
+      document.body.appendChild(a); 
+      a.click();
+      a.remove(); 
+      URL.revokeObjectURL(url);
+    });
+
+    // 3D Tilt Effect on Cards
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (ev) => {
+        const rect = card.getBoundingClientRect();
+        const x = ev.clientX - rect.left - rect.width / 2;
+        const y = ev.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(1000px) rotateX(${(-y / 20)}deg) rotateY(${(x / 20)}deg) translateY(-8px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  </script>
+</body>
+</html>
