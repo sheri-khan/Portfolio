@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sheri Khan — Portfolio</title>
+  <title>Sheri Khan — AI Engineer & Video Editor</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Portfolio of Sheri Khan — Full-Stack Software Developer, AI Integrator, and Content Creator.">
+  <meta name="description" content="Portfolio of Sheri Khan — AI Engineer building AI-integrated applications, computer vision systems, and full-stack software. Also a video editor and content creator.">
 
   <style>
     :root {
@@ -18,6 +18,7 @@
       --bg-sec: #121212;
       --accent-1: #8a2be2; /* Purple */
       --accent-2: #00e5ff; /* Cyan */
+      --accent-3: #ff3d81; /* Pink for video/creative */
       --text-main: #f8f9fa;
       --text-muted: #a0aec0;
       --glass-bg: rgba(255, 255, 255, 0.03);
@@ -43,7 +44,8 @@
       width: 200%; height: 200%;
       background: 
         radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.07) 0%, transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 30%);
+        radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(255, 61, 129, 0.04) 0%, transparent 30%);
       z-index: -1;
       animation: rotateBlob 30s linear infinite;
     }
@@ -77,7 +79,7 @@
       -webkit-text-fill-color: transparent;
       text-decoration: none;
     }
-    .nav-links { display: flex; gap: 24px; }
+    .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
@@ -108,8 +110,23 @@
       font-family: 'Outfit', sans-serif;
       margin-top: 8px;
     }
-    .tagline { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; }
+    .tagline { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; }
     .typed { color: var(--accent-2); font-weight: 600; }
+
+    /* Role badges */
+    .role-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .badge {
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--text-main);
+      letter-spacing: 0.3px;
+    }
+    .badge.ai { border-color: rgba(0, 229, 255, 0.4); color: #9fefff; }
+    .badge.video { border-color: rgba(255, 61, 129, 0.4); color: #ffb3d1; }
+    .badge.dev { border-color: rgba(138, 43, 226, 0.4); color: #d8b6ff; }
 
     /* Buttons */
     .btn-group { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
@@ -151,6 +168,13 @@
       background: var(--accent-2);
       border-radius: 2px;
     }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-top: -10px;
+      margin-bottom: 30px;
+      max-width: 720px;
+    }
 
     /* About Grid */
     .about-grid {
@@ -162,15 +186,28 @@
       padding: 40px;
       border-radius: 16px;
     }
-    .about-text p { color: var(--text-muted); margin-bottom: 16px; font-size: 1.1rem; }
-    
-    /* Expanded Tech Stack grid */
+    .about-text p { color: var(--text-muted); margin-bottom: 16px; font-size: 1.05rem; }
+    .about-text strong { color: var(--text-main); }
+    .about-text .accent-ai { color: var(--accent-2); }
+    .about-text .accent-video { color: var(--accent-3); }
+
+    /* Tech Stack */
     .tech-stack-container {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
-    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .skills-group { margin-top: 8px; }
+    .skills-group h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
     .skill-tag {
       background: rgba(138, 43, 226, 0.15);
       border: 1px solid rgba(138, 43, 226, 0.3);
@@ -185,10 +222,103 @@
       border-color: rgba(0, 229, 255, 0.5);
       color: #fff;
     }
+    .skill-tag.ai {
+      background: rgba(0, 229, 255, 0.12);
+      border-color: rgba(0, 229, 255, 0.3);
+      color: #b3f0ff;
+    }
+    .skill-tag.ai:hover {
+      background: rgba(0, 229, 255, 0.25);
+      color: #fff;
+    }
+    .skill-tag.video {
+      background: rgba(255, 61, 129, 0.12);
+      border-color: rgba(255, 61, 129, 0.3);
+      color: #ffc2da;
+    }
+    .skill-tag.video:hover {
+      background: rgba(255, 61, 129, 0.25);
+      color: #fff;
+    }
 
     @media(max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; padding: 24px; }
       .hero h1 { font-size: 2.5rem; }
+    }
+
+    /* Featured AI Projects */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .featured-card {
+      background: linear-gradient(180deg, rgba(0, 229, 255, 0.05) 0%, rgba(138, 43, 226, 0.04) 100%);
+      border: 1px solid rgba(0, 229, 255, 0.18);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .featured-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 229, 255, 0.45);
+      box-shadow: 0 15px 40px rgba(0, 229, 255, 0.1);
+    }
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
+    }
+    .featured-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .featured-card h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.35rem;
+      line-height: 1.3;
+    }
+    .featured-card .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .featured-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .featured-card ul li {
+      margin-bottom: 8px;
+    }
+    .featured-card ul li strong { color: var(--text-main); }
+    .featured-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--glass-border);
+    }
+    .featured-tech span {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      color: var(--accent-2);
     }
 
     /* Projects Grid */
@@ -225,7 +355,7 @@
     .card:hover::before { opacity: 1; }
     .card h3 { margin: 0 0 12px 0; font-size: 1.3rem; }
     .card p { color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; margin-bottom: 20px; }
-    
+
     .card-footer { display: flex; justify-content: space-between; align-items: center; }
     .lang-pill {
       font-size: 0.8rem;
@@ -268,19 +398,26 @@
       <a href="#" class="nav-logo">SK.</a>
       <div class="nav-links">
         <a href="#about">About</a>
+        <a href="#ai-work">AI Work</a>
         <a href="#projects">Projects</a>
         <a href="https://github.com/sheri-khan" target="_blank" rel="noopener">GitHub</a>
       </div>
     </nav>
 
     <header class="hero">
-      <h1>Sheri Khan <span>Full-Stack Software Developer</span></h1>
+      <h1>Sheri Khan <span>AI Engineer &amp; Video Editor</span></h1>
+      <div class="role-badges">
+        <span class="badge ai">AI Engineering</span>
+        <span class="badge dev">Full-Stack Development</span>
+        <span class="badge video">Video Editing &amp; Content</span>
+      </div>
       <div class="tagline">
-        I build robust, scalable applications from end to end. <br>
+        I build AI-integrated applications and computer vision systems — and craft high-energy video edits. <br>
         <span class="typed" id="typed"></span>
       </div>
       <div class="btn-group">
-        <a href="#projects" class="btn primary">View My Work</a>
+        <a href="#ai-work" class="btn primary">View AI Work</a>
+        <a href="#projects" class="btn">All Projects</a>
         <button class="btn" id="downloadBtn">Download CV / HTML</button>
       </div>
     </header>
@@ -289,27 +426,100 @@
       <h2 class="section-title">About Me</h2>
       <div class="about-grid">
         <div class="about-text">
-          <p>Hi, I'm Sheri! I specialize in full-stack web and mobile development, turning complex requirements into seamless, high-performance applications. I work across the entire stack, from crafting beautiful UI to managing databases and deploying cloud infrastructure.</p>
-          <p>When I'm not writing code, I'm creating content for my YouTube channels: <strong>SherixEditz</strong>, where I share dynamic cricket edits, and <strong>The Missing Minute</strong>, dedicated to delivering quick, insightful tutorials.</p>
+          <p>Hi, I'm Sheri. I'm an <strong class="accent-ai">AI Engineer</strong> who works <em>with</em> AI — integrating models, building computer vision systems, and using AI-assisted development to ship real products. I don't train foundation models from scratch; I make AI useful inside practical applications.</p>
+          <p>On the creative side, I'm a <strong class="accent-video">video editor and content creator</strong>. I run two YouTube channels — <strong>SherixEditz</strong> (dynamic cricket edits) and <strong>The Missing Minute</strong> (quick, insightful tutorials) — where pacing, motion, and storytelling matter as much as the code.</p>
+          <p>I also work across the full stack: React, Node, Flutter, cloud deployments, and databases — so AI features actually land in production, not just in notebooks.</p>
         </div>
         <div class="tech-stack-container">
-          <h3 style="margin-top: 0; margin-bottom: 8px;">My Tech Stack</h3>
-          <div class="skills-list">
-            <span class="skill-tag">JavaScript / React</span>
-            <span class="skill-tag">Node.js / Express</span>
-            <span class="skill-tag">MongoDB / Supabase</span>
-            <span class="skill-tag">Flutter & AI Integration</span>
-            <span class="skill-tag">AWS Cloud</span>
-            <span class="skill-tag">Git / GitHub</span>
-            <span class="skill-tag">CSS / Tailwind</span>
-            <span class="skill-tag">Video Editing / Content</span>
+          <h3 style="margin: 0;">My Tech Stack</h3>
+
+          <div class="skills-group">
+            <h4>AI Engineering</h4>
+            <div class="skills-list">
+              <span class="skill-tag ai">AI Integration</span>
+              <span class="skill-tag ai">Computer Vision / OpenCV</span>
+              <span class="skill-tag ai">Python</span>
+              <span class="skill-tag ai">AI-Assisted Development</span>
+              <span class="skill-tag ai">Prompt &amp; Context Design</span>
+              <span class="skill-tag ai">Model Evaluation</span>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <h4>Full-Stack Development</h4>
+            <div class="skills-list">
+              <span class="skill-tag">JavaScript / React</span>
+              <span class="skill-tag">Node.js / Express</span>
+              <span class="skill-tag">Flutter</span>
+              <span class="skill-tag">MongoDB / Supabase</span>
+              <span class="skill-tag">AWS Cloud</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">CSS / Tailwind</span>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <h4>Video Editing &amp; Content</h4>
+            <div class="skills-list">
+              <span class="skill-tag video">Video Editing</span>
+              <span class="skill-tag video">Motion &amp; Transitions</span>
+              <span class="skill-tag video">Color &amp; Sound Design</span>
+              <span class="skill-tag video">YouTube Content</span>
+              <span class="skill-tag video">Short-Form Storytelling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-work">
+      <h2 class="section-title">Featured AI Work</h2>
+      <p class="section-sub">Applied AI projects where I integrate AI into real systems — computer vision, AI-assisted development, and business-focused tooling.</p>
+
+      <div class="featured-grid">
+        <!-- AI Project 1 -->
+        <div class="featured-card">
+          <span class="featured-tag">AI Engineering</span>
+          <h3>AI Assistant — Milk Collection Management App</h3>
+          <p class="subtitle">Flutter application with an integrated AI assistant for dairy data analysis.</p>
+          <ul>
+            <li>Developed a customized <strong>Flutter-based milk collection application</strong> with AI-assisted development.</li>
+            <li>Built an <strong>AI assistant</strong> designed to help analyze and interpret application data.</li>
+            <li>Integrated AI concepts into a <strong>practical business-focused application</strong> rather than a standalone chatbot.</li>
+            <li>Used AI tools during development to <strong>accelerate implementation</strong> and problem-solving.</li>
+          </ul>
+          <div class="featured-tech">
+            <span>Flutter</span>
+            <span>AI Integration</span>
+            <span>Data Analysis</span>
+            <span>AI-Assisted Dev</span>
+          </div>
+        </div>
+
+        <!-- AI Project 2 -->
+        <div class="featured-card">
+          <span class="featured-tag">Computer Vision</span>
+          <h3>Bowling Action Analysis System</h3>
+          <p class="subtitle">Python + OpenCV system for cricket bowling-action analysis and legality assessment.</p>
+          <ul>
+            <li>Developed a customized <strong>computer-vision application</strong> using Python and OpenCV to analyze bowling actions.</li>
+            <li>Analyzes <strong>body movement and key angles</strong> including arm, shoulder, and leg positions.</li>
+            <li>Produces a <strong>detailed analysis summary</strong> based on detected measurements.</li>
+            <li>Designed around <strong>practical cricket bowling-action analysis</strong> and legality assessment.</li>
+          </ul>
+          <div class="featured-tech">
+            <span>Python</span>
+            <span>OpenCV</span>
+            <span>Pose / Angle Detection</span>
+            <span>Computer Vision</span>
           </div>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <h2 class="section-title">Selected Projects</h2>
+      <h2 class="section-title">Other Selected Projects</h2>
+      <p class="section-sub">Full-stack apps, web experiments, and academic work across the stack.</p>
       <div class="grid" id="projectsGrid">
         <!-- Cards injected via JS -->
       </div>
@@ -436,7 +646,11 @@
 
     // Typing Effect
     const typedEl = document.getElementById('typed');
-    const phrases = ["Full-Stack Web & Mobile", "AI-Integrated Apps", "Cloud & Backend Architectures"];
+    const phrases = [
+      "AI Integration & Computer Vision",
+      "Full-Stack Web & Mobile Apps",
+      "Video Editing & Content Creation"
+    ];
     let tIdx = 0, char = 0, adding = true;
     
     function tick() {
@@ -457,7 +671,7 @@
 
     // Download functionality
     document.getElementById('downloadBtn').addEventListener('click', () => {
-      const text = '<!doctype html>\\n' + document.documentElement.outerHTML;
+      const text = '<!doctype html>\n' + document.documentElement.outerHTML;
       const blob = new Blob([text], {type: 'text/html'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
